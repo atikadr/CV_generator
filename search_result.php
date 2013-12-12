@@ -16,8 +16,8 @@
 		$result = mysqli_query($con,"SELECT * FROM project WHERE UPPER(project_name) LIKE UPPER('%$projectname%')");
 
 		while ($row = mysqli_fetch_array($result)){
-			echo "Project name: ", $row['project_name'], "\n";
-			echo "Project client: ", $row['project_client'], "\n";
+			echo "Project name: ", $row['project_name'], "<br />";
+			echo "Project client: ", $row['project_client'], "<br />";
 			echo "Code name: ", $row['code_name'];
 		}
 	}

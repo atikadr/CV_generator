@@ -15,12 +15,22 @@ By employee name: <input type ="text" name="employeename" id="employeename"><br>
 
 	$projects = mysqli_query($con,"SELECT * FROM project");
 
-	echo "List of projects\r\n";
+	echo "List of projects<br />";
 
 	while($row = mysqli_fetch_array($projects)){
-		projectname = $row['project_name'];
-		echo "projectname";
-		//echo "<a href =/projectname>"
+		$projectname = $row['project_name'];
+		$pieces = explode(" ", $projectname);
+		$newstring = NULL;
+
+		//echo $pieces[0];
+		//echo $pieces[1];
+
+		for($i = 0 ; $i < count($pieces) ; $i++){
+			$newstring = $newstring . $pieces[$i];
+			if ($i != count($pieces) - 1) {$newstring = $newstring . "+";}
+		}
+		echo "<a href = search_result.php?projectname=$newstring&codename=&employeename=>$projectname</a>";
+		echo "<br />";
 	}
 
 ?>
