@@ -19,6 +19,7 @@ By employee name: <input type ="text" name="employeename" id="employeename"><br>
 
 	while($row = mysqli_fetch_array($projects)){
 		$projectname = $row['project_name'];
+		$projectenddate = $row['end_time'];
 		$pieces = explode(" ", $projectname);
 		$newstring = NULL;
 
@@ -34,6 +35,8 @@ By employee name: <input type ="text" name="employeename" id="employeename"><br>
 	}
 
 ?>
+
+<a href = new_project.php>New project</a>
 
 </body>
 </html>
