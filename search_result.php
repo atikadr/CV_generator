@@ -1,6 +1,12 @@
 <html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
 <body>
 
+<h2>Search result</h2>
 
 <?php
 	$con = mysqli_connect("localhost","root","bubumint","hr_dian");
@@ -15,10 +21,18 @@
 	if (!empty($projectname)){
 		$result = mysqli_query($con,"SELECT * FROM project WHERE UPPER(project_name) LIKE UPPER('%$projectname%')");
 
+		echo "<h3>Daftar proyek berdasarkan search: </h3>";
+
 		while ($row = mysqli_fetch_array($result)){
-			echo "Project name: ", $row['project_name'], "<br />";
-			echo "Project client: ", $row['project_client'], "<br />";
-			echo "Code name: ", $row['code_name'];
+			$chosenproject = $row['project_name'];
+			$pieces = explode(" ", $chosenproject);
+			$newstring = NULL;
+
+			for($i = 0 ; $i < count($pieces) ; $i++){
+				$newstring = $newstring . $pieces[$i];
+				if ($i != count($pieces) - 1) {$newstring = $newstring . "+";}
+			}
+			echo "<a href=edit_project.php?chosenproject=$newstring>$chosenproject<br />";
 		}
 	}
 	else

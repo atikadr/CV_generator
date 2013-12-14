@@ -1,5 +1,9 @@
 <html>
 
+<head>
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
 <h1>New Employee</h1>
 <body>
 

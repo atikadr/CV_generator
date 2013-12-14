@@ -1,4 +1,9 @@
 <html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
 <body>
 
 	<form method="get" action="new_project_2.php">
@@ -24,8 +29,6 @@
 		<br>
 		<input value="Add" type="submit">
 	</form>
-
-	<input value="Done" type="submit" action="new_project_success.php">
 
 </body>
 </html>
