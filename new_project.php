@@ -3,9 +3,18 @@
 <h1>New Project</h1>
 <body>
 
-<form method="get" action="new_project_2.php">
-Project name: <input type ="text" name="projectename" id="projectname"><br>
-<input value="Submit" type="submit">
+<form method="post" action="new_project_2.php">
+	Nama Proyek: <input type ="text" name="projectname" id="projectname"><br>
+	Client: <input type ="text" name="projectclient" id="projectclient"><br>
+	Lokasi: <input type="text" name="location" id="location"><br>
+	Nomor SPK: <input type="text" name="nomorSPK" id="nomorSPK"><br>
+	Code name: <input type="text" name="codename" id="codename"><br>
+	Mulai kerja: <input type="text" name="starttime" id="starttime"><br>
+	Selesai kerja: <input type="text" name="endtime" id="endtime"><br>
+	Nomor BAPP: <input type="text" name="nomorBAPP" id="nomorBAPP"><br>
+	Tanggal BAPP: <input type="text" name="tanggalBAPP" id="tanggalBAPP"><br>
+	Keterangan tambahan: <input type="text" name="description" id="description"><br>
+	<input value="Submit" type="submit">
 </form>
 
 </body>
