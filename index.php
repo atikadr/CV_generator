@@ -5,16 +5,30 @@
 </head>
 
 <body>
-<h2>Search</h2>
+
+<h2>Buat proyek atau anggota baru</h2>
+
+<a href = new_project.php>Proyek baru</a><br>
+<a href = new_employee.php>Anggota baru</a><br>
+<br>
+
+<h2>View/edit/delete existing proyek atau anggota</h2>
+
+<h3>Search</h3>
 <form method="get" action="search_result.php">
-	By project name: <input type ="text" name="projectname" id="projectname"><br>
-	By code name: <input type ="text" name="codename" id="codename"><br>
-	By employee name: <input type ="text" name="employeename" id="employeename"><br>
+	<table>
+		<tr><td>By project name:</td><td><input type ="text" name="projectname" id="projectname"></td>
+		<tr><td>By code name:</td><td><input type ="text" name="codename" id="codename"></td>
+		<tr><td>By employee name:</td><td><input type ="text" name="employeename" id="employeename"></td>
+	</table>
+	<br>
 	<input value = "Search" type="submit">
 </form>
 
-<br>
+<div id="container" style="width:900px">
 
+<br>
+<div style="background-color:#cccc33;width:200px;float:left;padding-left:10px">
 <?php
 
 	$con = mysqli_connect("localhost","root","bubumint","hr_dian");
@@ -23,7 +37,7 @@
 
 	$projects = mysqli_query($con,"SELECT * FROM project");
 
-	echo "<h2>List of projects</h2>";
+	echo "<h2>Daftar Proyek</h2>";
 
 	while($row = mysqli_fetch_array($projects)){
 		$projectname = $row['project_name'];
@@ -35,20 +49,21 @@
 			$newstring = $newstring . $pieces[$i];
 			if ($i != count($pieces) - 1) {$newstring = $newstring . "+";}
 		}
-		echo "<a href = search_result.php?projectname=$newstring&codename=&employeename=>$projectname</a>";
+		echo "<a href = edit_project.php?chosenproject=$newstring>$projectname</a>";
 		echo "<br />";
 	}
 
-	$employees = mysqli_query($con,"SELECT * FROM Employee");
+	echo "<br>";
 ?>
-<br>
+</div>
 
-<h2>New/edit/delete</h2>
+<div style="background-color:#ffffff;width:50px;float:left;"><font color="white">Gap here</font></div>
 
-<a href = new_project.php>Proyek baru</a><br>
-<a href = new_employee.php>Anggota baru</a><br>
-<a href = edit_project.php>Edit/hapus proyek</a><br>
-<a href = edit_employee.php>Edit/hapus anggota</a><br>
+<div style="background-color:#ffcc66;width:200px;float:left;padding-left:10px">
+
+</div>
+
+</div>
 
 </body>
 </html>

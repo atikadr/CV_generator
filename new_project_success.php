@@ -26,7 +26,8 @@
 	$position = mysqli_query($con,"SELECT * FROM Employee_position_type");
 ?>
 
-Proyek sudah disimpan. Add employee di <a href=add_employee_to_project.php>sini</a>.
+Proyek sudah disimpan. Add employee di <a href=add_employee_to_project.php>sini</a>.<br>
+<a href=index.php>Home</a>
 
 
 
