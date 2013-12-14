@@ -46,8 +46,6 @@
 	echo "</table>";
 ?>
 
-<br>
-<a href=index.php>Home</a>
 
 <body>
 

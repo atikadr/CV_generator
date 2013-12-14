@@ -6,8 +6,6 @@
 
 <body>
 
-<div id="container" style="width:900px">
-
 <div style="background-color:#ffcc66;width:900px">
 <h2>Buat proyek atau anggota baru</h2>
 <a href = new_project.php>Proyek baru</a><br>
@@ -56,11 +54,11 @@
 
 	echo "<br>";
 ?>
-</td></tr></table>
-<div style="background-color:#ffffff;width:50px;float:left;"><font color="white">Gap here</font></div>
+</td>
+<?php
 
-</div>
-
+?>
+</tr></table>
 </div>
 
 </body>
