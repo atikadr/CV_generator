@@ -4,7 +4,6 @@
 	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 
-<h1>New Project (2)</h1>
 <body>
 
 <?php

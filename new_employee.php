@@ -4,7 +4,9 @@
 	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 
-<h1>New Employee</h1>
+<a href=index.php>Home</a> > Anggota baru
+
+<h2>Anggota baru</h2>
 <body>
 
 <form method="get" action="new_employee_success.php">

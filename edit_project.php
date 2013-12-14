@@ -4,6 +4,8 @@
 	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 
+<a href=index.php>Home</a> > Edit project
+
 <?php
 	$con = mysqli_connect("localhost","root","bubumint","hr_dian");
 	$chosenproject = $_GET["chosenproject"];

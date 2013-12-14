@@ -6,6 +6,8 @@
 
 <body>
 
+<a href=index.php>Home</a> > Search result
+
 <h2>Search result</h2>
 
 <?php
