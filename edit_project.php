@@ -6,6 +6,8 @@
 
 <a href=index.php>Home</a> > Edit project
 
+<h2>View/edit/delete proyek</h2>
+
 <?php
 	$con = mysqli_connect("localhost","root","bubumint","hr_dian");
 	$chosenproject = $_GET["chosenproject"];

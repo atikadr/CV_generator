@@ -26,6 +26,7 @@
 	<br>
 	<input value = "Search" type="submit">
 </form>
+Untuk generate CV, bisa search anggota atau klik nama anggota di bawah<br>
 
 <br>
 <table><tr><td>
@@ -55,9 +56,26 @@
 
 	echo "<br>";
 ?>
-</td>
-<?php
 
+</td><td style="width:50px"></td><td>
+
+<?php
+	echo "<h3>Daftar anggota (klik untuk generate CV)</h3>";
+	$employees = mysqli_query($con,"SELECT * FROM Employee");
+	while($row = mysqli_fetch_array($employees)){
+		$employeename = $row['employee_name'];
+		$pieces = explode(" ", $employeename);
+		$newstring = NULL;
+
+		for($i = 0 ; $i < count($pieces) ; $i++){
+			$newstring = $newstring . $pieces[$i];
+			if ($i != count($pieces) - 1) {$newstring = $newstring . "+";}
+		}
+		echo "<a href = edit_employee.php?chosenemployee=$newstring>$projectname</a>";
+		echo "<br />";	
+	}
+
+	echo "<br>";
 ?>
 </tr></table>
 </div>
