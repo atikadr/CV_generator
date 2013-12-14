@@ -7,9 +7,10 @@
 <body>
 
 <div style="background-color:#ffcc66;width:900px">
-<h2>Buat proyek atau anggota baru</h2>
+<h2>Proyek/anggota baru</h2>
 <a href = new_project.php>Proyek baru</a><br>
 <a href = new_employee.php>Anggota baru</a><br>
+<a href = add_employee_to_project.php>Assign anggota ke proyek</a><br>
 <br>
 </div>
 
