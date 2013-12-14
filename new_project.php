@@ -3,7 +3,7 @@
 <h1>New Project</h1>
 <body>
 
-<form method="post" action="new_project_2.php">
+<form method="post" action="new_project_success.php">
 	Nama Proyek: <input type ="text" name="projectname" id="projectname"><br>
 	Client: <input type ="text" name="projectclient" id="projectclient"><br>
 	Lokasi: <input type="text" name="location" id="location"><br>
@@ -14,7 +14,7 @@
 	Nomor BAPP: <input type="text" name="nomorBAPP" id="nomorBAPP"><br>
 	Tanggal BAPP: <input type="text" name="tanggalBAPP" id="tanggalBAPP"><br>
 	Keterangan tambahan: <input type="text" name="description" id="description"><br>
-	<input value="Submit" type="submit">
+	<input value="Next" type="submit">
 </form>
 
 </body>
