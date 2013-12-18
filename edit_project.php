@@ -14,15 +14,9 @@
 	$editfield = $_GET['editfield'];
 	$editvalue = $_GET['editvalue'];
 
-	$pieces = explode("+", $chosenproject);
-	$newstring = NULL;
+	$curproject = urldecode($chosenproject);
 
-	for($i = 0 ; $i < count($pieces) ; $i++){
-		$newstring = $newstring . $pieces[$i];
-			if ($i != count($pieces) - 1) {$newstring = $newstring . " ";}
-	}
-
-	$result = mysqli_query($con,"SELECT * FROM project WHERE project_name = '$newstring'");
+	$result = mysqli_query($con,"SELECT * FROM project WHERE project_name = '$curproject'");
 	$row = mysqli_fetch_array($result);
 
 	$projectname=$row["project_name"];
@@ -49,21 +43,25 @@
 	echo "<tr><td style='width:200px'><b>Keterangan tambahan</b></td><td style='width:200px'>$description</td></tr>";
 	echo "</table>";
 
-	echo "<input type='button' value='Delete' action='delete_project.php?projectname=$chosenproject'>";
+	echo "<input type='button' value='Delete' action='delete_project.php?projectname=$curproject'>";
 
 ?>
 
 <br>Edit
 <?php
-echo "<form method='get' action='edit_project.php?chosenproject=$chosenproject&editfield=$editfield&editvalue=$editvalue'>";
-	echo "<select>";
-			echo "<option value='editfield'>project_name</option>";
+echo "<form method='get' action='edit_project.php'>";
+	echo "<select name='editfield'>";
+			echo "<option></option>";
+			echo "<option>project_name</option>";
 	echo "</select>";
+
+	$newvalue=urlencode($curproject);
 
 	echo "as<br>";
 	echo "<input type='text' name='editvalue' id='editvalue'>";
+	echo "<input type='hidden' name='chosenproject' value='$newvalue'>";
 
-	echo "<input type='button' value='Edit'>";
+	echo "<input type='submit' value='Edit'>";
 echo "</form>"
 ?>
 

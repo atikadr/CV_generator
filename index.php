@@ -50,7 +50,7 @@ Untuk generate CV, bisa search anggota atau klik nama anggota di bawah<br>
 			$newstring = $newstring . $pieces[$i];
 			if ($i != count($pieces) - 1) {$newstring = $newstring . "+";}
 		}
-		echo "<a href = edit_project.php?chosenproject=$newstring&editfield=>$projectname</a>";
+		echo "<a href = edit_project.php?chosenproject=$newstring&editfield=&editvalue=>$projectname</a>";
 		echo "<br />";
 	}
 
@@ -60,7 +60,7 @@ Untuk generate CV, bisa search anggota atau klik nama anggota di bawah<br>
 </td><td style="width:50px"></td><td>
 
 <?php
-	echo "<h3>Daftar anggota (klik untuk generate CV)</h3>";
+	echo "<h3>Daftar anggota dan generate CV</h3>";
 	$employees = mysqli_query($con,"SELECT * FROM Employee");
 	while($row = mysqli_fetch_array($employees)){
 		$employeename = $row['employee_name'];
