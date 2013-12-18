@@ -50,7 +50,7 @@ Untuk generate CV, bisa search anggota atau klik nama anggota di bawah<br>
 			$newstring = $newstring . $pieces[$i];
 			if ($i != count($pieces) - 1) {$newstring = $newstring . "+";}
 		}
-		echo "<a href = edit_project.php?chosenproject=$newstring>$projectname</a>";
+		echo "<a href = edit_project.php?chosenproject=$newstring&editfield=>$projectname</a>";
 		echo "<br />";
 	}
 

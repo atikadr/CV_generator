@@ -19,33 +19,33 @@
 
 ?>
 
-	<form method="post" action="add_employee_to_project_success.php">
+	<form method="get" action="add_employee_to_project_success.php">
 		Proyek:<br>
-		<select>
+		<select name='projectname'>
 			<?php
 				while($row = mysqli_fetch_array($projects)){
 					$projectname = $row['project_name'];
-					echo "<option value='projectname'>$projectname</option>";
+					echo "<option>$projectname</option>";
 				}
 			?>
 		</select><br>
 
 		Nama:<br>
-		<select>
+		<select name='employeename'>
 			<?php
 				while($row = mysqli_fetch_array($employees)){
 					$employeename = $row['employee_name'];
-					echo "<option value='employeename'>$employeename</option>";
+					echo "<option>$employeename</option>";
 				}
 			?>
 		</select><br>
 		
 		Jabatan:<br>
-		<select>
+		<select name='positiontype'>
 			<?php
 				while($row = mysqli_fetch_array($position)){
 					$positiontype = $row['employee_position_name'];
-					echo "<option value='employeeposition'>$positiontype</option>";
+					echo "<option>$positiontype</option>";
 				}
 			?>
 		</select>

@@ -11,6 +11,8 @@
 <?php
 	$con = mysqli_connect("localhost","root","bubumint","hr_dian");
 	$chosenproject = $_GET["chosenproject"];
+	$editfield = $_GET['editfield'];
+	$editvalue = $_GET['editvalue'];
 
 	$pieces = explode("+", $chosenproject);
 	$newstring = NULL;
@@ -47,12 +49,23 @@
 	echo "<tr><td style='width:200px'><b>Keterangan tambahan</b></td><td style='width:200px'>$description</td></tr>";
 	echo "</table>";
 
-	echo "<input type='button' value='Delete' action=delete_project.php?projectname=$chosenproject>";
+	echo "<input type='button' value='Delete' action='delete_project.php?projectname=$chosenproject'>";
 
 ?>
 
+<br>Edit
+<?php
+echo "<form method='get' action='edit_project.php?chosenproject=$chosenproject&editfield=$editfield&editvalue=$editvalue'>";
+	echo "<select>";
+			echo "<option value='editfield'>project_name</option>";
+	echo "</select>";
 
+	echo "as<br>";
+	echo "<input type='text' name='editvalue' id='editvalue'>";
 
+	echo "<input type='button' value='Edit'>";
+echo "</form>"
+?>
 
 <body>
 
