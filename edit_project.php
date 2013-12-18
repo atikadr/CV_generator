@@ -46,7 +46,12 @@
 	echo "<tr><td><b>Tanggal BAPP</b></td><td>$tanggalBAPP</td></tr>";
 	echo "<tr><td style='width:200px'><b>Keterangan tambahan</b></td><td style='width:200px'>$description</td></tr>";
 	echo "</table>";
+
+	echo "<input type='button' value='Delete' action=delete_project.php?projectname=$chosenproject>";
+
 ?>
+
+
 
 
 <body>

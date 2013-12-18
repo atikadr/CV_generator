@@ -6,7 +6,7 @@
 
 <body>
 
-<div style="background-color:#ffcc66;width:900px">
+<div style="background-color:#ffcc66;width:900px;padding-left:10px">
 <h2>Proyek/anggota baru</h2>
 <a href = new_project.php>Proyek baru</a><br>
 <a href = new_employee.php>Anggota baru</a><br>
@@ -71,7 +71,7 @@ Untuk generate CV, bisa search anggota atau klik nama anggota di bawah<br>
 			$newstring = $newstring . $pieces[$i];
 			if ($i != count($pieces) - 1) {$newstring = $newstring . "+";}
 		}
-		echo "<a href = edit_employee.php?chosenemployee=$newstring>$projectname</a>";
+		echo "<a href = edit_employee.php?chosenemployee=$newstring>$employeename</a>";
 		echo "<br />";	
 	}
 

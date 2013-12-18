@@ -41,9 +41,18 @@
 Pengalaman Kerja:<br>
 
 <?php
-	$positions = mysqli_query($con,"SELECT * FROM Employee_position WHERE employee_name = '$newstring'");
+	echo "<table>";
+	$positions = mysqli_query($con,"SELECT PT.employee_position_name, P.project_name, P.project_client, P.end_time FROM Employee_position EP, Project P, Employee_position_type PT WHERE EP.employee_name = '$newstring' AND EP.project_name = P.project_name AND PT.employee_position_type = EP.employee_position_type ORDER BY P.end_time DESC");
 	while($row = mysqli_fetch_array($positions)){
+		$year = date("YY", strtodate($row['end_time']));
+		$projectname = $row['project_name'];
+		$position = $row['employee_position_name'];
+		$projectclient = $row['project_client'];
+		echo "<tr>";
+		echo "<td></td>$year<td></td>$projectname</td><td>$position</td><td>$projectclient</td>"
+		echo "</tr>";
 	}
+	echo "</table>";
 ?>
 
 <body>
