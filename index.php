@@ -10,12 +10,14 @@
 <h2>Proyek/anggota baru</h2>
 <a href = new_project.php>Proyek baru</a><br>
 <a href = new_employee.php>Anggota baru</a><br>
-<a href = add_employee_to_project.php>Assign anggota ke proyek</a><br>
 <br>
 </div>
 
 <div style="background-color:#ffcc66;width:900px;padding-left:10px;">
-<h2>View/edit/delete existing proyek atau anggota</h2>
+<h2>View/edit/delete existing proyek/anggota</h2>
+
+Untuk generate CV, bisa search anggota atau klik nama anggota di bawah.
+
 <h3>Search</h3>
 <form method="get" action="search_result.php">
 	<table>
@@ -26,7 +28,6 @@
 	<br>
 	<input value = "Search" type="submit">
 </form>
-Untuk generate CV, bisa search anggota atau klik nama anggota di bawah<br>
 
 <br>
 <table><tr><td>
@@ -67,7 +68,17 @@ Untuk generate CV, bisa search anggota atau klik nama anggota di bawah<br>
 	echo "<br>";
 ?>
 </tr></table>
+
+<br>
 </div>
+
+
+<div style="background-color:#ffcc66;width:900px;padding-left:10px">
+	<h2>Add/delete anggota ke/dari proyek</h2>
+	<a href = add_employee_to_project.php>Add/delete anggota ke/dari proyek</a><br>
+	<br>
+</div>
+
 
 </body>
 </html>

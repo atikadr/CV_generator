@@ -21,11 +21,11 @@
 	$row = mysqli_fetch_array($result);
 	$position_type = $row['employee_position_type'];
 
-	mysqli_query($con, "INSERT INTO Employee_position VALUES ('$employeename',$position_type,'$projectname')");
+	mysqli_query($con, "DELETE FROM Employee_position WHERE employee_name='$employeename' AND employee_position_type=$position_type AND project_name='$projectname'");
 ?>
 
 <br>
-Employee successfully added to the project. DO NOT CLICK BACK OR REFRESH. Click <a href=add_employee_to_project.php>here</a> to continue adding/deleting more employees to the project.
+Employee successfully deleted from project. DO NOT CLICK BACK OR REFRESH. Click <a href=add_employee_to_project.php>here</a> to continue adding/deleting more employees to the project.
 
 </body>
 </html>
