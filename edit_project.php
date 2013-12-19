@@ -11,10 +11,15 @@
 <?php
 	$con = mysqli_connect("localhost","root","bubumint","hr_dian");
 	$chosenproject = $_GET["chosenproject"];
-	$editfield = $_GET['editfield'];
-	$editvalue = $_GET['editvalue'];
+	$editfield = urldecode($_GET['editfield']);
+	$editvalue = urldecode($_GET['editvalue']);
 
 	$curproject = urldecode($chosenproject);
+	if (!empty($editfield)){
+		mysqli_query($con, "UPDATE project SET $editfield='$editvalue' WHERE project_name='$curproject'");
+		echo $editfield;
+		echo $editvalue;
+	}
 
 	$result = mysqli_query($con,"SELECT * FROM project WHERE project_name = '$curproject'");
 	$row = mysqli_fetch_array($result);
@@ -42,27 +47,30 @@
 	echo "<tr><td><b>Tanggal BAPP</b></td><td>$tanggalBAPP</td></tr>";
 	echo "<tr><td style='width:200px'><b>Keterangan tambahan</b></td><td style='width:200px'>$description</td></tr>";
 	echo "</table>";
-
-	echo "<input type='button' value='Delete' action='delete_project.php?projectname=$curproject'>";
-
 ?>
 
 <br>Edit
 <?php
-echo "<form method='get' action='edit_project.php'>";
-	echo "<select name='editfield'>";
+	echo "<form method='get' action='edit_project.php'>";
+		echo "<select name='editfield'>";
 			echo "<option></option>";
-			echo "<option>project_name</option>";
-	echo "</select>";
+			echo "<option></option>";
+			echo "<option>code_name</option>";
+		echo "</select>";
 
-	$newvalue=urlencode($curproject);
+		echo "as";
+		echo "<input type='text' name='editvalue' id='editvalue'>";
+		
 
-	echo "as<br>";
-	echo "<input type='text' name='editvalue' id='editvalue'>";
-	echo "<input type='hidden' name='chosenproject' value='$newvalue'>";
+		$newvalue=urlencode($curproject);
+		echo "<input type='hidden' name='chosenproject' value='$newvalue'>";
 
-	echo "<input type='submit' value='Edit'>";
-echo "</form>"
+		echo "<input type='submit' value='Edit'>";
+	echo "</form>";
+
+	echo "WARNING: Button below deletes this project permanently.";
+	echo "<input type='button' value='Delete' action='delete_project.php?projectname=$newvalue'>";
+
 ?>
 
 <body>

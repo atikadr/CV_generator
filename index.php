@@ -43,13 +43,8 @@ Untuk generate CV, bisa search anggota atau klik nama anggota di bawah<br>
 	while($row = mysqli_fetch_array($projects)){
 		$projectname = $row['project_name'];
 		$projectenddate = $row['end_time'];
-		$pieces = explode(" ", $projectname);
-		$newstring = NULL;
+		$newstring = urlencode($projectname);
 
-		for($i = 0 ; $i < count($pieces) ; $i++){
-			$newstring = $newstring . $pieces[$i];
-			if ($i != count($pieces) - 1) {$newstring = $newstring . "+";}
-		}
 		echo "<a href = edit_project.php?chosenproject=$newstring&editfield=&editvalue=>$projectname</a>";
 		echo "<br />";
 	}
@@ -64,14 +59,8 @@ Untuk generate CV, bisa search anggota atau klik nama anggota di bawah<br>
 	$employees = mysqli_query($con,"SELECT * FROM Employee");
 	while($row = mysqli_fetch_array($employees)){
 		$employeename = $row['employee_name'];
-		$pieces = explode(" ", $employeename);
-		$newstring = NULL;
-
-		for($i = 0 ; $i < count($pieces) ; $i++){
-			$newstring = $newstring . $pieces[$i];
-			if ($i != count($pieces) - 1) {$newstring = $newstring . "+";}
-		}
-		echo "<a href = edit_employee.php?chosenemployee=$newstring>$employeename</a>";
+		$newstring = urlencode($employeename);
+		echo "<a href = edit_employee.php?chosenemployee=$newstring&editfield=&editvalue=>$employeename</a>";
 		echo "<br />";	
 	}
 

@@ -16,9 +16,9 @@
 		{echo "Failed to connect";}
 
 
-	$projectname = trim($_GET["projectname"]);
-	$codename = trim($_GET["codename"]);
-	$employeename = trim($_GET["employeename"]);
+	$projectname = urldecode($_GET["projectname"]);
+	$codename = urldecode($_GET["codename"]);
+	$employeename = urldecode($_GET["employeename"]);
 
 	if (!empty($projectname)){
 		$result = mysqli_query($con,"SELECT * FROM project WHERE UPPER(project_name) LIKE UPPER('%$projectname%')");
@@ -27,14 +27,8 @@
 
 		while ($row = mysqli_fetch_array($result)){
 			$chosenproject = $row['project_name'];
-			$pieces = explode(" ", $chosenproject);
-			$newstring = NULL;
-
-			for($i = 0 ; $i < count($pieces) ; $i++){
-				$newstring = $newstring . $pieces[$i];
-				if ($i != count($pieces) - 1) {$newstring = $newstring . "+";}
-			}
-			echo "<a href=edit_project.php?chosenproject=$newstring>$chosenproject<br />";
+			$newstring = urlencode($chosenproject);
+			echo "<a href=edit_project.php?chosenproject=$newstring&editfield=&editvalue=>$chosenproject<br />";
 		}
 	}
 	else
@@ -44,14 +38,8 @@
 
 			while ($row = mysqli_fetch_array($result)){
 				$chosenproject = $row['project_name'];
-				$pieces = explode(" ", $chosenproject);
-				$newstring = NULL;
-
-				for($i = 0 ; $i < count($pieces) ; $i++){
-					$newstring = $newstring . $pieces[$i];
-					if ($i != count($pieces) - 1) {$newstring = $newstring . "+";}
-				}
-				echo "<a href=edit_project.php?chosenproject=$newstring>$chosenproject<br />";
+				$newstring = urlencode($chosenproject);
+				echo "<a href=edit_project.php?chosenproject=$newstring&editfield=&editvalue=>$chosenproject<br />";
 			}
 		}
 		else
@@ -61,14 +49,8 @@
 
 				while($row = mysqli_fetch_array($result)){
 					$chosenemployee = $row['employee_name'];
-					$pieces = explode(" ", $chosenemployee);
-					$newstring = NULL;
-
-					for($i = 0 ; $i < count($pieces) ; $i++){
-						$newstring = $newstring . $pieces[$i];
-						if ($i != count($pieces) - 1) {$newstring = $newstring . "+";}
-					}
-					echo "<a href=edit_employee.php?chosenemployee=$newstring>$chosenemployee<br />";
+					$newstring = urlencode($chosenemployee);
+					echo "<a href=edit_employee.php?chosenemployee=$newstring&editfield=&editvalue=>$chosenemployee<br />";
 				}
 			}
 
