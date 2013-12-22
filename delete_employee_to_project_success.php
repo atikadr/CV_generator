@@ -22,10 +22,12 @@
 	$position_type = $row['employee_position_type'];
 
 	mysqli_query($con, "DELETE FROM Employee_position WHERE employee_name='$employeename' AND employee_position_type=$position_type AND project_name='$projectname'");
+	$newstring=urlencode($projectname);
+	$newstring2=urlencode($employeename);
+
+	echo "<br>Employee successfully added to the project. DO NOT CLICK BACK OR REFRESH."; 
+	echo "<br>Click <a href=edit_project.php?chosenproject=$newstring&editfield=&editvalue=>here</a> untuk menambah atau menghapus anggota ke proyek ini.";
+	echo "<br>Click <a href=edit_employee.php?chosenemployee=$newstring2&editfield=&editvalue=>here</a> untuk menambah atau menghapus pengalaman kerja anggota ini.";
 ?>
-
-<br>
-Employee successfully deleted from project. DO NOT CLICK BACK OR REFRESH. Click <a href=add_employee_to_project.php>here</a> to continue adding/deleting more employees to the project.
-
 </body>
 </html>

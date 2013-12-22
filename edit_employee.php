@@ -118,14 +118,14 @@
 ?>
 
 <br><br>
-<b>Pengalaman Kerja:</b><br>
+<h2>Pengalaman Kerja:</h2>
 
 <table border=1 style='border-collapse:collapse'>
 	<tr><td style='width:200px'><b>Tahun</b></td><td style='width:200px'><b>Nama Proyek</b></td><td style='width:200px'><b>Posisi</b></td><td style='width:200px'><b>Client</b></td></tr>
 <?php
-	$positions = mysqli_query($con,"SELECT PT.employee_position_name, P.project_name, P.project_client, P.end_time FROM Employee_position EP, Project P, Employee_position_type PT WHERE EP.employee_name = '$curemployee' AND EP.project_name = P.project_name AND PT.employee_position_type = EP.employee_position_type ORDER BY P.end_time DESC");
+	$positions = mysqli_query($con,"SELECT PT.employee_position_name, P.project_name, P.project_client, P.end_date FROM Employee_position EP, Project P, Employee_position_type PT WHERE EP.employee_name = '$curemployee' AND EP.project_name = P.project_name AND PT.employee_position_type = EP.employee_position_type");
 	while($row = mysqli_fetch_array($positions)){
-		$year = date("Y", strtotime($row['end_time']));
+		$year = date("Y", strtotime($row['end_date']));
 		$projectname = $row['project_name'];
 		$position = $row['employee_position_name'];
 		$projectclient = $row['project_client'];
@@ -134,10 +134,61 @@
 		echo "</tr>";
 	}
 ?>
-</table>
+</table><br>
 
-<br>
-Untuk menambah pengalaman kerja, click <a href=add_employee_to_project.php>sini</a>.
+<?php
+	echo "<br><b>Tambah pengalaman kerja</b>";
+	$position=mysqli_query($con,"SELECT * FROM Employee_position_type");
+	$projects=mysqli_query($con,"SELECT * FROM Project");
+
+	echo "<form method='get' action='add_employee_to_project_success.php'>";
+		echo "Proyek:<br>";
+		echo "<select name='projectname'>";
+			while($row = mysqli_fetch_array($projects)){
+				$projectname = $row['project_name'];
+				echo "<option>$projectname</option>";
+			}
+		echo "</select><br>";
+		
+		echo "Jabatan:<br>";
+		echo "<select name='positiontype'>";
+		while($row = mysqli_fetch_array($position)){
+			$positiontype = $row['employee_position_name'];
+			echo "<option>$positiontype</option>";
+		}
+		echo "</select><br>";
+
+		echo "<input type='hidden' name='projectname' value='$newvalue'>"; 
+
+		echo "<input value='Add' type='submit'>";
+	echo "</form>";
+
+	echo "<br><b>Delete pengalaman kerja</b>";
+	$position=mysqli_query($con,"SELECT * FROM Employee_position_type");
+	$projects=mysqli_query($con,"SELECT * FROM Project");
+
+	echo "<form method='get' action='delete_employee_to_project_success.php'>";
+		echo "Proyek:<br>";
+		echo "<select name='projectname'>";
+			while($row = mysqli_fetch_array($projects)){
+				$projectname = $row['project_name'];
+				echo "<option>$projectname</option>";
+			}
+		echo "</select><br>";
+		
+		echo "Jabatan:<br>";
+		echo "<select name='positiontype'>";
+		while($row = mysqli_fetch_array($position)){
+			$positiontype = $row['employee_position_name'];
+			echo "<option>$positiontype</option>";
+		}
+		echo "</select><br>";
+
+		echo "<input type='hidden' name='projectname' value='$newvalue'>"; 
+
+		echo "<input value='Add' type='submit'>";
+	echo "</form>";
+?>
 
 <body>
 

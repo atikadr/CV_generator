@@ -77,8 +77,75 @@
 	echo "<form method='get' action='delete_project.php'>";
 		echo "<input type='hidden' name='chosenproject' value='$newvalue'>";
 		echo "<input type='submit' value='Delete proyek'>";
-	echo "</form>"
+	echo "</form>";
+
+
+	echo "<h2>Anggota proyek</h2>";
+	echo "<table><tr><td style='width:200px'><b>Nama</b></td><td style='width:200px'><b>Jabatan</b></td></tr>";
+	$positions = mysqli_query($con,"SELECT * FROM Employee_position WHERE project_name='$curproject'");
+	while($row = mysqli_fetch_array($positions)){
+		$employeename = $row['employee_name'];
+		$positiontype = $row['employee_position_type'];
+		$position = mysqli_query($con, "SELECT * FROM Employee_position_type WHERE employee_position_type=$positiontype");
+		$positionname = mysqli_fetch_array($position);
+		$positionname = $positionname['employee_position_name'];
+		echo "<tr><td>$employeename</td><td>$positionname</td></tr>";
+	}
+	echo "</table>";
+
+	echo "<br><b>Add anggota ke proyek</b>";
+	$employees=mysqli_query($con, "SELECT * FROM Employee");
+	$position=mysqli_query($con,"SELECT * FROM Employee_position_type");
+	echo "<form method='get' action='add_employee_to_project_success.php'>";
+		echo "Nama:<br>";
+		echo "<select name='employeename'>";
+		while($row = mysqli_fetch_array($employees)){
+			$employeename = $row['employee_name'];
+			echo "<option>$employeename</option>";
+		}
+		echo "</select><br>";
+		
+		echo "Jabatan:<br>";
+		echo "<select name='positiontype'>";
+		while($row = mysqli_fetch_array($position)){
+			$positiontype = $row['employee_position_name'];
+			echo "<option>$positiontype</option>";
+		}
+		echo "</select><br>";
+
+		echo "<input type='hidden' name='projectname' value='$newvalue'>"; 
+
+		echo "<input value='Add' type='submit'>";
+	echo "</form>";
+
+	echo "<br><b>Delete anggota dari proyek</b>";
+	$employees=mysqli_query($con, "SELECT * FROM Employee_position WHERE project_name='$curproject'");
+	$position=mysqli_query($con,"SELECT * FROM Employee_position_type");
+	echo "<form method='get' action='delete_employee_to_project_success.php'>";
+		echo "Nama:<br>";
+		echo "<select name='employeename'>";
+		while($row = mysqli_fetch_array($employees)){
+			$employeename = $row['employee_name'];
+			echo "<option>$employeename</option>";
+		}
+		echo "</select><br>";
+		
+		echo "Jabatan:<br>";
+		echo "<select name='positiontype'>";
+		while($row = mysqli_fetch_array($position)){
+			$positiontype = $row['employee_position_name'];
+			echo "<option>$positiontype</option>";
+		}
+		echo "</select><br>";
+
+		echo "<input type='hidden' name='projectname' value='$newvalue'>"; 
+
+		echo "<input value='Add' type='submit'>";
+	echo "</form>";
+
 ?>
+
+
 
 <body>
 

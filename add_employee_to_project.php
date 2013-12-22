@@ -19,7 +19,7 @@
 
 ?>
 
-	<form method="get">
+	<form method="get" action="add_employee_to_project_success.php">
 		Proyek:<br>
 		<select name='projectname'>
 			<?php
@@ -51,8 +51,7 @@
 		</select>
 		<br>
 
-		<input value="Add" type="submit" action="add_employee_to_project_success.php">
-		<input value="Delete" type="submit" action="delete_employee_to_project_success.php">
+		<input value="Add" type="submit">
 	</form>
 
 </body>
