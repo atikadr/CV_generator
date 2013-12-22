@@ -21,30 +21,50 @@
 	}	
 
 	$result = mysqli_query($con,"SELECT * FROM Employee WHERE employee_name = '$curemployee'");
+	$educations = mysqli_query($con,"SELECT * FROM Education WHERE employee_name = '$curemployee'");
 	$row = mysqli_fetch_array($result);
 
 	$employeename=$row["employee_name"];
-	$birthdate=$row["birth"];
-	$birth_place=$row["birth_place"];
+	$nationality=$row["nationality"];
+	$birthdate=$row["birth_date"];
+	$birthplace=$row["birth_place"];
 	$address=$row["address"];
-	$education=$row["education"];
-	
+
 	echo "<h2>$employeename</h2>";
 	echo "<table border=1 style='border-collapse:collapse;'>";
+	echo "<tr><td><b>Kebangsaan</b></td><td>$nationality</td></tr>";
 	echo "<tr><td><b>Tanggal lahir</b></td><td>$birthdate</td></tr>";
-	echo "<tr><td><b>Tempat lahir</b></td><td>$birth_place</td></tr>";
-	echo "<tr><td><b>Alamat</b></td><td>$address</td></tr>";
-	echo "<tr><td style='width:200px'><b>Pendidikan</b></td><td style='width:200px'>$education</td></tr>";
+	echo "<tr><td><b>Tempat lahir</b></td><td>$birthplace</td></tr>";
+	echo "<tr><td style='width:200px'><b>Alamat</b></td><td style='width:350px'>$address</td></tr>";
+	echo "<tr><td><b>Pendidikan</b></td>";
+	while ($row = mysqli_fetch_array($educations)){
+		$title = $row['title'];
+		$university = $row['university'];
+		$start_year = $row['start_year'];
+		$end_year = $row['end_year'];
+		$yearstring = "";
+		if (!empty($start_year)){
+			$yearstring = $start_year;
+			if (!empty($end_year)){
+				$yearstring = $start_year . " - " . $end_year;
+			}
+		}
+		echo "<td style='width:350px'>$title, $university, $yearstring</td></tr>";
+		echo "<tr><td></td>";
+	}
 	echo "</table>";
 ?>
 
-<br>Edit
+<br>
 <?php
+	echo "<b>Edit field</b>";
 	echo "<form method='get' action='edit_employee.php'>";
 		echo "<select name='editfield'>";
 			echo "<option></option>";
-			echo "<option></option>";
-			echo "<option>birth</option>";
+			echo "<option>nationality</option>";
+			echo "<option>birth_place</option>";
+			echo "<option>birth_date</option>";
+			echo "<option>address</option>";
 		echo "</select>";
 
 		echo "as";
@@ -56,7 +76,23 @@
 		echo "<input type='submit' value='Edit'>";
 	echo "</form>";
 
-	echo "WARNING: Button ini deletes this employee permanently.";
+	echo "<b>Untuk menambah pendidikan: </b><br>";
+	echo "<form method='get' action='add_education.php'>";
+		echo "<table>";
+			echo "<tr><td style='100 px'>Sekolah: </td>";
+			echo "<td><input type='text' name='university' id='university'></td></tr>";
+			echo "<tr><td>Gelar: </td>";
+			echo "<td><input type='text' name='title' id='title'></td></tr>";
+			echo "<tr><td>Tahun mulai: </td>";
+			echo "<td><input type='text' name='start_year' id='start_year'></td></tr>";
+			echo "<tr><td>Tahun lulus: </td>";
+			echo "<td><input type='text' name='end_year' id='end_year'></td></tr>";
+		echo "</table>";
+		echo "<input type='hidden' name='chosenemployee' value='$newvalue'>";
+		echo "<input type='submit' value='Add'>";
+	echo "</form>";
+
+	echo "WARNING: Button ini menghapus anggota permanen.";
 	echo "<input type='button' value='Delete' action='delete_employee.php?employeename=$newvalue'>";
 ?>
 

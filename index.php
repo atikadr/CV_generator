@@ -30,30 +30,35 @@ Untuk generate CV, bisa search anggota atau klik nama anggota di bawah.
 </form>
 
 <br>
-<table><tr><td>
+<table><tr><td style="width:450px">
 <?php
 
 	$con = mysqli_connect("localhost","root","bubumint","hr_dian");
 	if (mysqli_connect_errno())
 		{echo "Failed to connect";}
 
-	$projects = mysqli_query($con,"SELECT * FROM project");
+	$projects = mysqli_query($con,"SELECT * FROM project ORDER BY end_date DESC");
 
 	echo "<h3>Daftar Proyek</h3>";
 
 	while($row = mysqli_fetch_array($projects)){
 		$projectname = $row['project_name'];
-		$projectenddate = $row['end_time'];
+		$projectenddate = $row['end_date'];
 		$newstring = urlencode($projectname);
 
-		echo "<a href = edit_project.php?chosenproject=$newstring&editfield=&editvalue=>$projectname</a>";
+		if (!empty($projectenddate))
+			echo date("Y", strtotime($projectenddate));
+		else
+			echo "(ongoing)";
+
+		echo " <a href = edit_project.php?chosenproject=$newstring&editfield=&editvalue=>$projectname</a>";
 		echo "<br />";
 	}
 
 	echo "<br>";
 ?>
 
-</td><td style="width:50px"></td><td>
+</td><td style="width:100px"></td><td>
 
 <?php
 	echo "<h3>Daftar anggota dan generate CV</h3>";
