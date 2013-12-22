@@ -16,8 +16,6 @@
 
 	if (!empty($editfield)){
 		mysqli_query($con, "UPDATE employee SET $editfield='$editvalue' WHERE employee_name='$curemployee'");
-		echo $editfield;
-		echo $editvalue;
 	}	
 
 	$result = mysqli_query($con,"SELECT * FROM Employee WHERE employee_name = '$curemployee'");
@@ -33,7 +31,7 @@
 	echo "<h2>$employeename</h2>";
 	echo "<table border=1 style='border-collapse:collapse;'>";
 	echo "<tr><td><b>Kebangsaan</b></td><td>$nationality</td></tr>";
-	echo "<tr><td><b>Tanggal lahir</b></td><td>$birthdate</td></tr>";
+	echo "<tr><td><b>Tanggal lahir (YYYY/MM/DD):</b></td><td>$birthdate</td></tr>";
 	echo "<tr><td><b>Tempat lahir</b></td><td>$birthplace</td></tr>";
 	echo "<tr><td style='width:200px'><b>Alamat</b></td><td style='width:350px'>$address</td></tr>";
 	echo "<tr><td><b>Pendidikan</b></td>";
@@ -44,12 +42,12 @@
 		$end_year = $row['end_year'];
 		$yearstring = "";
 		if (!empty($start_year)){
-			$yearstring = $start_year;
+			$yearstring = ", " . $start_year;
 			if (!empty($end_year)){
-				$yearstring = $start_year . " - " . $end_year;
+				$yearstring = ", " .  $start_year . " - " . $end_year;
 			}
 		}
-		echo "<td style='width:350px'>$title, $university, $yearstring</td></tr>";
+		echo "<td style='width:350px'>$title, $university$yearstring</td></tr>";
 		echo "<tr><td></td>";
 	}
 	echo "</table>";
@@ -93,7 +91,10 @@
 	echo "</form>";
 
 	echo "WARNING: Button ini menghapus anggota permanen.";
-	echo "<input type='button' value='Delete' action='delete_employee.php?employeename=$newvalue'>";
+	echo "<form method='get' action='delete_employee.php?'>";
+		echo "<input type='hidden' name='employeename' value='$newvalue'>";
+		echo "<input type='submit' value='Delete'>";
+	echo "</form>";
 ?>
 
 <br><br>
