@@ -90,10 +90,30 @@
 		echo "<input type='submit' value='Add'>";
 	echo "</form>";
 
+	echo "Untuk menghapus education";
+	echo "<form method='get' action='delete_education.php'>";
+	echo "Sekolah <select name='university'>";
+	$educations = mysqli_query($con,"SELECT * FROM Education WHERE employee_name = '$curemployee'");
+	while ($row = mysqli_fetch_array($educations)){
+		$university = $row['university'];
+		echo "<option>$university</option>";
+	}
+	echo "</select>";
+	echo "Gelar <select name='title'>";
+	$educations = mysqli_query($con,"SELECT * FROM Education WHERE employee_name = '$curemployee'");
+	while ($row = mysqli_fetch_array($educations)){
+		$title = $row['title'];
+		echo "<option>$title</option>";
+	}
+	echo "</select>";
+	echo "<input type='hidden' name='chosenemployee' value='$newvalue'>";
+	echo "<input type='submit' value='Delete pendidikan'>";
+	echo "</form>";
+
 	echo "WARNING: Button ini menghapus anggota permanen.";
 	echo "<form method='get' action='delete_employee.php?'>";
 		echo "<input type='hidden' name='employeename' value='$newvalue'>";
-		echo "<input type='submit' value='Delete'>";
+		echo "<input type='submit' value='Delete anggota'>";
 	echo "</form>";
 ?>
 
