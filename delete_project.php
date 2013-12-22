@@ -10,7 +10,7 @@
 
 <?php
 	$con = mysqli_connect("localhost","root","bubumint","hr_dian");
-	$projectname = urldecode($_GET["projectname"]);
+	$projectname = urldecode($_GET["chosenproject"]);
 
 	mysqli_query($con, "DELETE FROM Project WHERE project_name='$projectname'");
 ?>
